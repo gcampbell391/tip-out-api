@@ -14,4 +14,18 @@ class UsersController < ApplicationController
         end 
     end
 
+    def create
+        @user = User.new(name: params[:name], email: params[:email])
+        @user.password_digest = BCrypt::Password.create(params["password"])
+        if @user.valid?
+            @user.save
+            render json: {
+                status: :created,
+                user: @user,
+            }
+        else
+            render json: { status: 401 }
+        end
+    end
+
 end
