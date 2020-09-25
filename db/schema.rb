@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2020_09_20_212846) do
   create_table "shifts", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "employment_place", null: false
+    t.string "shift_date", null: false
     t.string "shift_type", null: false
     t.string "shift_hours", null: false
     t.string "pay_total", null: false
