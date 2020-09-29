@@ -7,5 +7,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#logout'
 
+  #User Add Shift
+  post '/add_shift', to: 'users#add_shift'
+
 end
 

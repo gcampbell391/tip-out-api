@@ -28,4 +28,20 @@ class UsersController < ApplicationController
         end
     end
 
+    def add_shift
+        @shift = Shift.new(user_id: params[:userID], employment_place: params[:employment_place], shift_date: params[:shift_date], shift_type: params[:shift_type], shift_hours: params[:shift_hours], pay_total: params[:pay_total])
+        if params[:shift_comments] != ""
+            @shift.shift_comments = params[:shift_comments]
+        end
+        if @shift.valid?
+            @shift.save
+            render json: {
+                status: :created,
+                newShift: @shift,
+            }
+        else
+            render json: { status: 401 }
+        end
+    end
+
 end
