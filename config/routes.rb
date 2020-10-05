@@ -10,5 +10,8 @@ Rails.application.routes.draw do
   #User Add Shift
   post '/add_shift', to: 'users#add_shift'
 
+  #User Delete Shift
+  post '/delete_shift', to: 'users#delete_shift'
+
 end
 

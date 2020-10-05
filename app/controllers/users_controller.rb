@@ -44,4 +44,16 @@ class UsersController < ApplicationController
         end
     end
 
+
+    def delete_shift
+        puts 'Delete shift'
+        @shift = Shift.find_by(shift_date: params[:shiftDate], shift_type: params[:shiftType])
+        if @shift == nil
+            render json: { status: "Shift Doesn't Exist!" }
+        else
+            render json: { shift: @shift }
+            @shift.destroy
+        end
+    end
+
 end
