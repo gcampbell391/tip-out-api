@@ -13,5 +13,8 @@ Rails.application.routes.draw do
   #User Delete Shift
   post '/delete_shift', to: 'users#delete_shift'
 
+  #User Update Name
+  patch '/update_name', to: 'users#update_name'
+
 end
 
