@@ -72,7 +72,17 @@ class UsersController < ApplicationController
         else
             render json: { error: "Update Error!" }, status: 404
         end
-        
+    end
+
+    def update_email
+        @user = User.find(params[:id])
+        @user.email = params[:email]
+        if @user.valid?
+            @user.save
+            render json: { user: @user }
+        else
+            render json: { error: "Update Error!" }, status: 404
+        end
     end
 
 end
