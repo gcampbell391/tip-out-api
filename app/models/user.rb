@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    has_many :shifts
+    has_many :shifts, dependent: :destroy
     has_secure_password
     before_save :downcase_email 
     validates_uniqueness_of :email, case_sensitive: false
