@@ -22,5 +22,8 @@ Rails.application.routes.draw do
   #User Update Password
   patch '/update_password', to: 'users#update_password'
 
+  #User Delete Account
+  post '/delete_account', to: 'users#delete_account'
+
 end
 

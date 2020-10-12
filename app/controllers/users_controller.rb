@@ -96,4 +96,17 @@ class UsersController < ApplicationController
         end
     end
 
+    def delete_account
+        @user = User.find(params[:id])
+        if @user 
+            @user.destroy
+            render json: { message: "User Account Successfully Terminated" }
+
+        else
+            render json: {error: "Error occured. Please Try Again."}, status: 404
+
+        end
+    end
+
+
 end
