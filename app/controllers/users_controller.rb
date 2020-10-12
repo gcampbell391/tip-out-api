@@ -85,4 +85,15 @@ class UsersController < ApplicationController
         end
     end
 
+    def update_password
+        @user = User.find(params[:id])
+        if @user && @user.authenticate(params[:oldPassword])
+            @user.password_digest = BCrypt::Password.create(params[:newPassword])
+            @user.save
+            render json: { user: @user }
+        else
+            render json: {error: "Current Password Is Incorrect. Please Try Again."}, status: 404
+        end
+    end
+
 end

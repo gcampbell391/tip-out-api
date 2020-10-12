@@ -19,5 +19,8 @@ Rails.application.routes.draw do
   #User Update Email
   patch '/update_email', to: 'users#update_email'
 
+  #User Update Password
+  patch '/update_password', to: 'users#update_password'
+
 end
 
