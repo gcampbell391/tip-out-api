@@ -31,6 +31,14 @@ class User < ApplicationRecord
         return self.shifts.count
     end
 
+    def total_hours
+        totalHours = 0
+        self.shifts.each do |shift|
+            totalHours = totalHours + shift.shift_hours.to_f.round(1)
+        end
+        return totalHours
+    end
+
     def average_tips_per_shift
         return (total_tips/total_shifts).round(2)
     end
@@ -59,8 +67,52 @@ class User < ApplicationRecord
         return (totalTips/dayShifts).round(2)
     end
 
+    def best_shift
+        bestShift = 0
+        self.shifts.each do |shift|
+            if bestShift < shift.pay_total.to_f.round(2)
+                bestShift = shift.pay_total.to_f.round(2)
+            end
+        end
+        return bestShift
+    end
 
+    def worst_shift
+        worstShift = self.shifts.first.pay_total.to_f.round(2)
+        self.shifts.each do |shift|
+            if worstShift > shift.pay_total.to_f.round(2)
+                worstShift = shift.pay_total.to_f.round(2)
+            end
+        end
+        return worstShift
+    end
 
+    def average_per_hour
+        return (total_tips/total_hours).round(2)
+    end
 
+    def average_per_hour_at_night
+        nightTips = 0
+        nightHours = 0
+        self.shifts.each do |shift|
+            if shift.shift_type == "night"
+                nightHours = nightHours + shift.shift_hours.to_f.round(1)
+                nightTips = nightTips + shift.pay_total.to_f 
+            end
+        end
+        return (nightTips/nightHours).round(2)
+    end
+
+    def average_per_hour_at_day
+        dayTips = 0
+        dayHours = 0
+        self.shifts.each do |shift|
+            if shift.shift_type == "day"
+                dayHours = dayHours + shift.shift_hours.to_f.round(1)
+                dayTips = dayTips + shift.pay_total.to_f 
+            end
+        end
+        return (dayTips/dayHours).round(2)
+    end
     
 end
