@@ -8,7 +8,21 @@ class UsersController < ApplicationController
     def show
         user = User.find(params[:id])
         if user
-            render json: user, include: [:shifts]
+            render json: {
+                user: user,
+                totalTips: user.total_tips,
+                totalShifts: user.total_shifts,
+                totalHours: user.total_hours,
+                avgTipsPerShift: user.average_tips_per_shift,
+                avgTipsPerNight: user.average_tips_per_night,
+                avgTipsPerDay: user.average_tips_per_day,
+                avgPerHour: user.average_per_hour,
+                avgPerHourNight: user.average_per_hour_at_night,
+                avgPerHourDay: user.average_per_hour_at_day,
+                bestShift: user.best_shift,
+                worstShift: user.worst_shift,
+
+            }, include: [:shifts]
         else
             render json: { error: "Not found!" }, status: 404
         end 
