@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     end
 
     def add_shift
-        @shift = Shift.find_by(shift_date: params[:shift_date], shift_type: params[:shift_type])
+        @shift = Shift.find_by(user_id: params[:userID],shift_date: params[:shift_date], shift_type: params[:shift_type])
         #If date and shift type exists..return error
         if @shift != nil
             return render json: {error: "Shift Already Exists"}
