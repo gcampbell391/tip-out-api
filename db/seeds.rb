@@ -12,7 +12,7 @@
 
     puts 'Creating Users...'
     puts 'Creating Shifts...'
-    user1 = User.create(name: 'Gene', email: "gc3@gmail.com" , password_digest: BCrypt::Password.create("123"))
+    user1 = User.create(name: 'Gene', email: "demo@gmail.com" , password_digest: BCrypt::Password.create("123"))
     Shift.create(user_id: user1.id, employment_place: 'MadLife Stage and Studio', shift_date: "10/2/20", shift_type: 'night', shift_hours: '4.3', pay_total: '102.34')
     Shift.create(user_id: user1.id, employment_place: 'MadLife Stage and Studio', shift_date: "10/3/20", shift_type: 'day', shift_hours: '8', pay_total: '190')
     Shift.create(user_id: user1.id, employment_place: 'MadLife Stage and Studio', shift_date: "10/5/20", shift_type: 'day', shift_hours: '8', pay_total: '111')
