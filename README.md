@@ -6,4 +6,4 @@ An API for Tip Out application built with Ruby on Rails and PostGres.
     - User
         - has-many Shifts
     - Shift
-        - belongs=to User
+        - belongs-to User
